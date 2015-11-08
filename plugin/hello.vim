@@ -14,6 +14,7 @@ endf
 
 fu! s:insertLines()
 	cal setline(1, s:getBufferNames())
+	setl noma cul
 endf
 
 fu! s:getBufferNames()
@@ -78,9 +79,10 @@ fu! s:close()
 endf
 
 fu! s:getcline()
-    cal s:closeKeyLoop()
     echo 'crt-->'.line('.').' -->'.s:bufnames[line('.') - 1]
-    exe 'tabe '.s:bufnames[line('.') - 1]
+    let temp = s:bufids[line('.') - 1]
+    cal s:close()
+    exe 'bn '.temp
 endf
 
 fu! s:goNext()
